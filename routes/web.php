@@ -30,5 +30,5 @@ Route::middleware([
 
 Route::get('/delete', [TestController::class, 'delete']);
 Route::get('/show', [TestController::class, 'show']);
-Route::get('/edit', [TestController::class, 'edit']);
+Route::get('/update', [TestController::class, 'update']);
 Route::get('/create', [TestController::class, 'create']);
