@@ -10,6 +10,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -58,4 +59,13 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function createUser($input)
+    {
+        return User::create([
+            'name' => $input['name'],
+            'email' => $input['email'],
+            'password' => Hash::make($input['password']),
+        ]);
+    }
 }

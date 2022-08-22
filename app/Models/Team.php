@@ -41,4 +41,13 @@ class Team extends JetstreamTeam
         'updated' => TeamUpdated::class,
         'deleted' => TeamDeleted::class,
     ];
+
+    public function createTeam($user)
+    {
+        return $user->ownedTeams()->save(Team::forceCreate([
+            'user_id' => $user->id,
+            'name' => explode(' ', $user->name, 2)[0]."'s Team",
+            'personal_team' => true,
+        ]));
+    }
 }
